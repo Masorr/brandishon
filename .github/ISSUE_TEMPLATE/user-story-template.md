@@ -1,7 +1,7 @@
 ---
 name: User Story template
 about: Custom template for Brandishon project's user stories
-title: ''
+title: 'USER STORY: <TITLE>'
 labels: ''
 assignees: ''
 

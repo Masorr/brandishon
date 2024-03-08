@@ -1,0 +1,1 @@
+web: gunicorn brandishon.wsgi:application

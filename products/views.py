@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.utils import timezone
 
 from .models import Product, Category, Review
 from .forms import ProductForm, ReviewForm
@@ -105,14 +106,67 @@ def product_detail(request, product_id):
         else:
             messages.error(request, 'Invalid form submission. Please try again.')
 
+    # Check if the user has an existing review for this product
+    user_has_review = False
+    if request.user.is_authenticated:
+        user_has_review = product.reviews.filter(author=request.user).exists()
+
     # Render product detail page with the review form and reviews
     context = {
         'product': product,
         'reviews': reviews,
         'review_count': review_count,
         'review_form': review_form,
+        'user_has_review': user_has_review,
     }
     return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def edit_review(request, review_id):
+    """
+    Edit a review
+    
+    Updates created_on date if editing of review is saved
+    """
+    review = get_object_or_404(Review, pk=review_id)
+    if request.user == review.author:
+        if request.method == 'POST':
+            form = ReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                review.created_on = timezone.now()
+                form.save()
+                messages.success(request, 'Review updated successfully!')
+                return redirect('product_detail', product_id=review.product.id)
+            else:
+                messages.error(request, 'Failed to update review. Please ensure the form is valid.')
+        else:
+            form = ReviewForm(instance=review)
+            messages.info(request, 'You are editing your review.')
+
+        context = {
+            'form': form,
+            'review': review,
+        }
+        return render(request, context)
+    else:
+        messages.error(request, 'You are not authorized to edit this review.')
+        return redirect('product_detail', product_id=review.product.id)
+
+
+@login_required
+def delete_review(request, review_id):
+    """ Delete a review """
+    review = get_object_or_404(Review, pk=review_id)
+    if request.user == review.author:
+        product_id = review.product.id
+        review.delete()
+        messages.success(request, 'Review deleted!')
+        # Redirect back to the product detail page to refresh page
+        return redirect('product_detail', product_id=product_id)
+    else:
+        messages.error(request, 'Only the author of the review can delete it.')
+        return redirect('product_detail', product_id=review.product.id)
 
 
 @login_required

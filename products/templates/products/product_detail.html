@@ -137,8 +137,8 @@
                         {{ review.body | linebreaks }}
                     </div>
                     {% if user.is_authenticated and review.author == user %}
-                    <button class="btn btn-delete" review_id="{{ review.id }}">Delete</button>
-                    <button class="btn btn-edit" review_id="{{ review.id }}">Edit</button>
+                    <button class="btn btn-delete" data-review_id="{{ review.id }}">Delete</button>
+                    <button class="btn btn-edit" data-review_id="{{ review.id }}">Edit</button>
                     {% endif %}
                 </div>
                 {% empty %}
@@ -149,26 +149,28 @@
     </div>
     <!-- Creating New Reviews -->
     <div class="col-md-4 card mb-4 mt-3">
-      <div class="card-body">
-        {% if user.is_authenticated %}
-        <h3>Leave a review:</h3>
-        <p>Posting as: {{ user.username }}</p>
-        <form id="reviewForm" method="post" style="margin-top: 1.3em">
-        {{ review_form.as_p }}
-        {% csrf_token %}
-        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">
-            Submit
-        </button>
-        </form>
-        {% else %}
-        <p>Log in to leave a review</p>
-        {% endif %}
-      </div>
+        <div class="card-body">
+            {% if user.is_authenticated %}
+                {% if not user_has_review %}
+                    <h3>Leave a review:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form id="reviewForm" method="post" style="margin-top: 1.3em">
+                        {{ review_form.as_p }}
+                        {% csrf_token %}
+                        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    </form>
+                {% else %}
+                    <p>You have already reviewed this product. Delete your existing review to submit a new one.</p>
+                {% endif %}
+            {% else %}
+                <p>Log in to leave a review</p>
+            {% endif %}
+        </div>
     </div>
-  </div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
+{% include 'products/includes/review_script.html' %}
 {% endblock %}

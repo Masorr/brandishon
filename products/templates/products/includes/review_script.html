@@ -1,0 +1,63 @@
+<script>
+    /*
+    JavaScript code for CRUD functionality for the reviews, adding editing and deletion functionality for reviews on the product detail page.
+
+    When an 'edit' button is clicked, it replaces the review text with a textarea containing the current review text, allowing the user to edit. It also disables the edit button while editing.
+    When a 'delete' button is clicked, it prompts the user for confirmation and then sends a POST request to delete the review. If successful, it reloads the page to reflect the changes.
+    The 'cancel' button in the edit form allows the user to cancel the editing process and reload the page to reset the JavaScript functionality.
+
+    */
+    document.addEventListener("DOMContentLoaded", function() {
+        const editButtons = document.querySelectorAll('.btn-edit');
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+        
+        editButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const reviewId = button.dataset.review_id;
+                const reviewContainer = document.querySelector(`#review${reviewId}`);
+                const reviewText = reviewContainer.innerText.trim();
+                const formHtml = `
+                    <form method="post" class="edit-review-form" action="/products/review/${reviewId}/edit/">
+                        {% csrf_token %}
+                        <textarea class="form-control" name="body">${reviewText}</textarea>
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Save</button>
+                        <button type="button" class="btn btn-secondary btn-sm mt-2 ml-2 cancel-edit">Cancel</button>
+                    </form>`;
+                reviewContainer.innerHTML = formHtml;
+                // Disable edit button since they're already editing their review
+                button.disabled = true;
+            });
+        });
+        
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const reviewId = button.dataset.review_id;
+                if (confirm('Are you sure you want to delete this review?')) {
+                    fetch(`/products/review/${reviewId}/delete/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Reload the page after successful deletion
+                            location.reload();
+                            alert('Review deleted successfully!');
+                        } else {
+                            alert('Failed to delete review.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            });
+        });
+
+        // Adding event listener for cancel button in edit form
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('cancel-edit')) {
+                location.reload(); // Reload the page to reset JavaScript
+            }
+        });
+    });
+</script>

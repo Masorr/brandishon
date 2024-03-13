@@ -8,6 +8,7 @@ from django.utils import timezone
 from .models import Product, Category, Review
 from .forms import ProductForm, ReviewForm
 from checkout.models import OrderLineItem
+from wishlist.models import Wishlist
 
 # Create your views here.
 
@@ -80,6 +81,7 @@ def product_detail(request, product_id):
     reviews = product.reviews.all().order_by("-created_on")
     review_count = product.reviews.count()
     review_form = ReviewForm()
+    wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
 
     if request.method == "POST":
         review_form = ReviewForm(request.POST)
@@ -111,13 +113,14 @@ def product_detail(request, product_id):
     if request.user.is_authenticated:
         user_has_review = product.reviews.filter(author=request.user).exists()
 
-    # Render product detail page with the review form and reviews
+    # Render product detail page with the review form, reviews and wishlist button
     context = {
         'product': product,
         'reviews': reviews,
         'review_count': review_count,
         'review_form': review_form,
         'user_has_review': user_has_review,
+        'wishlist_product_ids': wishlist_product_ids,
     }
     return render(request, 'products/product_detail.html', context)
 

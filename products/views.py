@@ -12,6 +12,7 @@ from wishlist.models import Wishlist
 
 # Create your views here.
 
+
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
@@ -35,7 +36,7 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-            
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
@@ -44,10 +45,13 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
-            
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+
+            queries = Q(
+                name__icontains=query) | Q(
+                description__icontains=query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -81,39 +85,49 @@ def product_detail(request, product_id):
     reviews = product.reviews.all().order_by("-created_on")
     review_count = product.reviews.count()
     review_form = ReviewForm()
-    wishlist_product_ids = Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
+    wishlist_product_ids = Wishlist.objects.filter(
+        user=request.user).values_list(
+        'product_id', flat=True)
 
     if request.method == "POST":
         review_form = ReviewForm(request.POST)
         if review_form.is_valid():
             if request.user.is_authenticated:
                 # Check if the user has bought the product
-                has_bought_product = OrderLineItem.objects.filter(order__user_profile__user=request.user, product=product).exists()
+                has_bought_product = OrderLineItem.objects.filter(
+                    order__user_profile__user=request.user, product=product).exists()
                 if has_bought_product:
                     # Check if the user has already reviewed this product
                     if product.reviews.filter(author=request.user).exists():
-                        messages.error(request, 'You have already reviewed this product.')
+                        messages.error(
+                            request, 'You have already reviewed this product.')
                     else:
                         # Save the review
                         review = review_form.save(commit=False)
                         review.author = request.user
                         review.product = product
                         review.save()
-                        messages.success(request, 'Review submitted successfully!')
-                        return redirect('product_detail', product_id=product_id)
+                        messages.success(
+                            request, 'Review submitted successfully!')
+                        return redirect(
+                            'product_detail', product_id=product_id)
                 else:
-                    messages.error(request, 'You need to buy this product to review it.')
+                    messages.error(
+                        request, 'You need to buy this product to review it.')
             else:
-                messages.error(request, 'You need to log in to review this product.')
+                messages.error(
+                    request, 'You need to log in to review this product.')
         else:
-            messages.error(request, 'Invalid form submission. Please try again.')
+            messages.error(
+                request, 'Invalid form submission. Please try again.')
 
     # Check if the user has an existing review for this product
     user_has_review = False
     if request.user.is_authenticated:
         user_has_review = product.reviews.filter(author=request.user).exists()
 
-    # Render product detail page with the review form, reviews and wishlist button
+    # Render product detail page with the review form, reviews and wishlist
+    # button
     context = {
         'product': product,
         'reviews': reviews,
@@ -129,7 +143,7 @@ def product_detail(request, product_id):
 def edit_review(request, review_id):
     """
     Edit a review
-    
+
     Updates created_on date if editing of review is saved
     """
     review = get_object_or_404(Review, pk=review_id)
@@ -142,7 +156,8 @@ def edit_review(request, review_id):
                 messages.success(request, 'Review updated successfully!')
                 return redirect('product_detail', product_id=review.product.id)
             else:
-                messages.error(request, 'Failed to update review. Please ensure the form is valid.')
+                messages.error(
+                    request, 'Failed to update review. Please ensure the form is valid.')
         else:
             form = ReviewForm(instance=review)
             messages.info(request, 'You are editing your review.')
@@ -186,10 +201,12 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add product. Please ensure the form is valid.')
     else:
         form = ProductForm()
-        
+
     template = 'products/add_product.html'
     context = {
         'form': form,
@@ -213,7 +230,9 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update product. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')

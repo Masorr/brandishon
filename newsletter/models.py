@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 
+
 class Subscriber(models.Model):
     email = models.EmailField(unique=True)
     verified = models.BooleanField(default=False)

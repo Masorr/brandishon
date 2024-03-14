@@ -3,17 +3,19 @@ from django.contrib.auth.models import User
 from products.models import Product
 
 # Create your models here.
+
+
 class Wishlist(models.Model):
     '''
     Stores wishlist related to a :model:`Product` made by :model:`auth.User`
     '''
     product = models.ForeignKey(
-        Product, 
+        Product,
         related_name="wishlist_items",
         on_delete=models.CASCADE  # Specify the behavior on deletion
     )
     user = models.ForeignKey(
-        User, 
+        User,
         related_name="wishlist",
         on_delete=models.CASCADE  # Specify the behavior on deletion
     )

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /bag/
+Sitemap: https://brandishon-ab5cf39e8610.herokuapp.com/sitemap.xml

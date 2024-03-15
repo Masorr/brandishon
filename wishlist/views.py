@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Wishlist
 from products.models import Product
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def wishlist(request):
     """
     View for displaying the user's wishlist.

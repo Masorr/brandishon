@@ -85,9 +85,13 @@ def product_detail(request, product_id):
     reviews = product.reviews.all().order_by("-created_on")
     review_count = product.reviews.count()
     review_form = ReviewForm()
-    wishlist_product_ids = Wishlist.objects.filter(
-        user=request.user).values_list(
-        'product_id', flat=True)
+
+    if request.user.is_authenticated:
+        wishlist_product_ids = Wishlist.objects.filter(
+            user=request.user).values_list(
+            'product_id', flat=True)
+    else:
+        wishlist_product_ids = []
 
     if request.method == "POST":
         review_form = ReviewForm(request.POST)

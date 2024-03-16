@@ -265,6 +265,22 @@ input[name='q']::placeholder {
     border-radius: 0;
 }
 
+/* Styling for reviews */
+
+.review-margin {
+    margin-left: 2%;
+}
+
+#reviewForm {
+    margin-top: 1.3em;
+}
+
+#reviewForm label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+/* Footer */
 footer {
     bottom: 0;
     width: 100%;

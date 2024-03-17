@@ -99,7 +99,8 @@ def product_detail(request, product_id):
             if request.user.is_authenticated:
                 # Check if the user has bought the product
                 has_bought_product = OrderLineItem.objects.filter(
-                    order__user_profile__user=request.user, product=product).exists()
+                    order__user_profile__user=request.user, product=product
+                    ).exists()
                 if has_bought_product:
                     # Check if the user has already reviewed this product
                     if product.reviews.filter(author=request.user).exists():
@@ -161,7 +162,9 @@ def edit_review(request, review_id):
                 return redirect('product_detail', product_id=review.product.id)
             else:
                 messages.error(
-                    request, 'Failed to update review. Please ensure the form is valid.')
+                    request,
+                    'Failed to update review. Please ensure the form is valid.'
+                    )
         else:
             form = ReviewForm(instance=review)
             messages.info(request, 'You are editing your review.')

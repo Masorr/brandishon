@@ -17,7 +17,8 @@ def subscribe(request):
             send_verification_email(request, subscriber)
             messages.success(
                 request,
-                'A verification email has been sent. Please verify your email address.')
+                'A verification email has been sent. \
+                Please verify your email address.')
         else:
             messages.info(request, 'You are already subscribed.')
 
@@ -37,7 +38,8 @@ def unsubscribe(request):
                 send_unsubscribe_verification_email(request, subscriber)
                 messages.success(
                     request,
-                    'A verification email has been sent for unsubscribing. Please verify to unsubscribe.')
+                    'A verification email has been sent for unsubscribing. \
+                    Please verify to unsubscribe.')
             else:
                 messages.info(request, 'You are not subscribed.')
         else:
@@ -68,7 +70,8 @@ def send_unsubscribe_verification_email(request, subscriber):
     unsubscribe_link = request.build_absolute_uri(
         reverse('verify_unsubscribe', args=[subscriber.verification_token]))
     template = get_template(
-        'newsletter/confirmation_emails/unsubscribe_confirmation_email_body.txt')
+        'newsletter/confirmation_emails/'
+        'unsubscribe_confirmation_email_body.txt')
     context = {'subscriber': subscriber, 'unsubscribe_link': unsubscribe_link}
     message = template.render(context)
     email = EmailMessage(subject, message, to=[subscriber.email])
@@ -83,7 +86,8 @@ def verify_email(request, verification_token):
 
     messages.success(
         request,
-        'Your email address has been verified. You will now receive our newsletters.')
+        'Your email address has been verified. \
+        You will now receive our newsletters.')
 
     return redirect('subscribe')
 

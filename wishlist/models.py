@@ -12,12 +12,12 @@ class Wishlist(models.Model):
     product = models.ForeignKey(
         Product,
         related_name="wishlist_items",
-        on_delete=models.CASCADE  # Specify the behavior on deletion
+        on_delete=models.CASCADE
     )
     user = models.ForeignKey(
         User,
         related_name="wishlist",
-        on_delete=models.CASCADE  # Specify the behavior on deletion
+        on_delete=models.CASCADE
     )
 
     def __str__(self):

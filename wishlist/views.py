@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 def wishlist(request):
     """
     View for displaying the user's wishlist.
+
+    The view retrieves all wishlist products associated with the currently logged-in user
+    and renders them on the wishlist template.
     """
     wishlist_items = Wishlist.objects.filter(user=request.user)
 
@@ -21,7 +24,7 @@ def wishlist(request):
 @login_required
 def add_to_wishlist(request, product_id):
     """
-    View for adding a product to the wishlist.
+    View for adding a product to the wishlist if it's not already present.
     """
     product = get_object_or_404(Product, pk=product_id)
 
@@ -41,7 +44,7 @@ def add_to_wishlist(request, product_id):
 @login_required
 def remove_from_wishlist(request, product_id):
     """
-    View for removing a product from the wishlist.
+    View for removing a product from the wishlist if it exists.
     """
     product = get_object_or_404(Product, pk=product_id)
 

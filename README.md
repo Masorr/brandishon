@@ -37,6 +37,7 @@ The wishlist, review and newsletter models are custom functionalities to expand 
 - **Homepage**
 
   - The homepage is the first page the user will encounter. It shows a smiling woman with several shopping bags, a text to captivate the customer with the promise of 'new collections', and a button the user can click on, the 'SHOP NOW' which will take them to the products page.
+  - ![Homepage](documentation/homepage.png)
 
 - **Newsletter**
 
@@ -45,6 +46,7 @@ The newsletter is built to be easy and simple with minimum interface, yet also s
   - Shows two fields: Subscribe and Unsubscribe. For straightforward, minimum work and good user experience to quickly and easily subscribe or unsubscribe to Brandishon's newsletter.
   - Subscribe field: Includes a form where any user (logged in or not) can enter their email address if they want to subscribe to Brandishon's newsletter. When their email is entered, a verification email is sent to the user to verify that the email wants to subscribe to the newsletter. Clicking the verification link will allow the users to receive the newsletter.
   - Unsubscribe field: Includes a form where any user (logged in or not) can enteir their email address if they want to unsubscribe to Brandishon's newsletter. When their email is entered, a verification email is sent to the user to verify that the email wants to unsubscribe to the newsletter. Clicking the verification link will allow the users to stop receiving the newsletter and this data will be removed from the database.
+  - ![Newsletter](documentation/newsletter.png)
 
 - **The Products Page**
 
@@ -65,7 +67,7 @@ The products page is sortable and categorizable.
   - Categorization: The products page can show categorized products, filtering results the user wants to access.
   - Categorization is possible in the navbar under 'CLOTHING' and choosing (Activewear & Essentials, Jeans, Shirts, All Clothing), under 'HOMEWARE' and choosing (Bed & Bath, Kitchen & Dining, All Homeware), under 'SPECIAL OFFERS' and choosing (New Arrivals, Deals, Clearance, All Specials)
 
-  - ![About](documentation/products-page.png)
+  - ![Products](documentation/products.png)
 
 - **Product Detail Page**
 
@@ -81,6 +83,10 @@ The products page is sortable and categorizable.
     - Logged-in users can contribute reviews for products they've purchased, enhancing the community engagement and providing valuable feedback.
   - Guest Checkout
     - Users have the option to make purchases without the need to create an account, streamlining the checkout process and accommodating guest users.
+
+  - ![Product Detail](documentation/product-detail.png)
+  - ![Review 1](documentation/review-1.png)
+  - ![Review 2](documentation/review-2.png)
 
 - **Shopping bag**
 
@@ -121,7 +127,6 @@ The Checkout section facilitates the final steps of the purchasing process, ensu
 
   - Return to Shopping: After completing the transaction, users are prompted with a button labeled "NOW CHECK OUT THE LATEST DEALS!". Clicking this button redirects users to the Products page, where they can explore categories such as "Clearance", "Deals", and "New Arrivals".
 
-
 - **Register, Login and Logout**
 
   - Allows the user to register and make an account. The authentication functionalities are powered using Django's allauth package.
@@ -152,7 +157,6 @@ Overview
 
 - **My Profile (Must be logged in)**
 
-
 The My Profile section provides users with a personalized space where they can manage their account details, view their order history, and update their information.
 
   - Profile Management: Users can access a dedicated page to save and update their personal information, ensuring a seamless shopping experience. This information includes shipping address, contact details, and preferences.
@@ -173,16 +177,13 @@ The My Profile section provides users with a personalized space where they can m
 
 ### Features Left to Implement
 
-- Truncate blog posters name and commenter (in post details).
+- Addressing and finishing user story #25 (a could-have), and user story #27 (a won't-have).
   - **Reasons**: Lack of time.
 
-- Insert ability for users to write their bios on profile page without having to access django admin panel.
+- Expanding review functionalities for users to rate the product (0-5), and for this to be visibly reflected onto the product detail.
   - **Reasons**: Lack of time.
 
-- Blog posts and comments made by a user to show up on their profile page.
-  - **Reasons**: Lack of current knowledge and time.
-
-- Implement like system for blog posts and see amount of likes. Allowing users to give positive feedback to posts.
+- Implement actual newsletter form for admin to send to subscribed users.
   - **Reasons**: Lack of time.
 
 ## User Experience - UX
@@ -234,26 +235,41 @@ The user stories are accessible in the Musician's Blog User Stories project
   - #22 As a shopper I can review a bought product so that I can assure the quality of the product to other shoppers and the owner
   - #27 (Unfinished) As a site user/shopper I can get informed by mail and site-notifications about updates on my wishlist items so that I can be informed of special offers and product updates
 
+### CRUD
+
+CRUD functionalities are present for:
+  - The site admin considering the handling of products.
+  - Registered users considering reviews of specific products.
+
+### 404.html error page
+
+Attempting to access unexisting/unavailable content will present a custom 404 error page.
+ - ![404.html](documentation/404-error.png)
+
+## SEO
+
+- robots.txt and sitemap.xml are present to improve SEO.
+  - sitemap.xml was generated by passing the deployed project link <https://brandishon-ab5cf39e8610.herokuapp.com/> into <https://www.xml-sitemaps.com/>
+
+## Marketing
+
+Marketing is done through facebook presence and a subscribable newsletter form.
+
+- **Newsletter:** The purpose of the newsletter is for users to remain in contact with Brandishon, ensuring the possibility that they'll come back and buy more products. Subscribing to the newsletter will allow the site admins on Brandishon to post new deals or relevant messages to the user. It is designed to be as minimal and simple as possible, to maximise user subscriptions. Users do not need to have an account to be able to subscribe to the newsletter, but they need to verify the email address.
+
+- **Facebook:** The purpose here is to reach out to the public and become visible for users by establishing an online presence. Here can Brandishon's facebook business page be found <https://www.facebook.com/profile.php?id=61556974037656>.
+
+## Privacy Policy
+
+Since Brandishon collects data from users. The site wishes to inform the users of how the data is handled. This is done through Brandishon's privacy policy, formed according to EU's GDPR regulations. The privacy policy was generated by passing the deployed site <https://brandishon-ab5cf39e8610.herokuapp.com/> to <https://www.privacypolicygenerator.info/>
+<>
+
 ## Design
 
 - Since Brandishon is based off Code Institute's Boutique Ado e-commerce project. The design retains this style.
 - Only wireframes available are for the new additions. Three of which are the review function for product detail page, wishlist page and the newsletter page.
-- The ERDS show already established models in the CodeStar blog as well as new.
+- The ERDS show the newly established models in Brandishon.
 - The new models here are: **Reviews**, **Wishlist**, **Newsletter**
-
-## Marketing
-
-## Privacy Policy
-
-- **Wireframes**
-
-  - ![Reviews Function](documentation/wireframes/reviews.png)
-  - ![Wishlist Page](documentation/wireframes/wishlist.png)
-  - ![Newsletter Page](documentation/wireframes/newsletter.png)
-
-- **ERD (Entity Relationship Diagrams)**
-
-  - ![ERD](documentation/erds/erds.png)
 
 - **Colours**
 
@@ -263,17 +279,28 @@ The user stories are accessible in the Musician's Blog User Stories project
   - Grey (uncommon). Used mostly for borders.
   - Yellow (rare). Used only on home page.
 
+- **Wireframes**
+
+  - **Reviews**
+    - ![Reviews Function](documentation/wireframes/reviews.png)
+  - **Wishlist**
+    - ![Wishlist Page](documentation/wireframes/wishlist.png)
+  - **Newsletter**
+    - ![Newsletter Page](documentation/wireframes/newsletter.png)
+
+- **ERD (Entity Relationship Diagrams)**
+
+  - ![ERD](documentation/erds/erds.png)
+
 ## Testing
 
 ### Manual Testing
 
 There have been extensive manual testing of the site.
 Testing of every major feature both on site and in django admin panel.
-Below is a list of specific manual tests.
+Below is a list of specific manual tests. (Downloadable PDF)
 
-![Testing-1](documentation/tests-1.png)
-![Testing-2](documentation/tests-2.png)
-![Testing-3](documentation/tests-3.png)
+[Tests](documentation/tests.pdf)
 
 ### Validator Testing
 
@@ -298,21 +325,21 @@ autopep8 --in-place --aggressive --aggressive <file name>
 
 - W3C CSS validator result for style.css.
 
-  ![W3C CSS validation](documentation/validate-css.png)
+  ![W3C CSS validation](documentation/validate-css.jpg)
 
 - JavaScript
   - No errors were found when passing through the JSHint validator: <https://jshint.com/>
 
-- JSHint validator result for javascript file comments.js
+- JSHint validator result for the javascript in file review_script.html
 
-  ![JSHint validation](documentation/validate-javascript.png)
+  ![JSHint validation](documentation/validate-javascript.jpg)
 
 - Python
   - No errors or warnings were found when passing through the PEP8 python validator: <https://pep8ci.herokuapp.com/>
 
 - PEP8 validator result for python files in Brandishon's reviews, wishlist and newsletter additions.
 
-  ![PEP8 validation](documentation/validate-python.png)
+  ![PEP8 validation](documentation/validate-python.jpg)
 
 ### Media
 
@@ -325,7 +352,7 @@ autopep8 --in-place --aggressive --aggressive <file name>
 - Home page
   - ![Lighthouse home page](documentation/lighthouse-home.png)
 - Post detail page
-  - ![Lighthouse post detail page](documentation/lighthouse-post-detail.png)
+  - ![Lighthouse products page](documentation/lighthouse-products.png)
 - About page
   - ![Lighthouse about page](documentation/lighthouse-about.png)
 - Register / Login / Logout
@@ -341,13 +368,50 @@ autopep8 --in-place --aggressive --aggressive <file name>
 
 ### Fixed Bugs
 
--
+- Total cost showing as $0 on checkout success page.
+  - The costs were appropriately showing as expected in all cases. But when the user actually checked out their order. The total billing information given was $0. If they made an order of $20 for example, they received a confirmation on their order after successful payment that the cost would be $0 (instead of $20).
+  - Extensive troubleshooting was made to search for the cause. As apparently, aside from making a $0 confirmation, the order was also duplicated.
+  - After looking through the developer section in stripe and seeing that the webhook works as it should, the problem must've been somewhere in the workspace.
+  - After looking through the checkout app (since it is here the problem is occuring). It was discovered that issue was in checkout/apps.py
+  - **Code below before bug fix**
+    -   ```
+        from django.apps import AppConfig
+
+
+        class CheckoutConfig(AppConfig):
+            default_auto_field = 'django.db.models.BigAutoField'
+            name = 'checkout'
+        ```
+  - **Code below after bug fix**
+    - ```
+      from django.apps import AppConfig
+
+
+      class CheckoutConfig(AppConfig):
+          name = 'checkout'
+
+          def ready(self):
+              import checkout.signals
+      ```
+  - Adding import checkout.signals statement in the ready() method of CheckoutConfig class ensure the signal handlers defined in checkout.signals are appropriately called.
+  - After this correction. The total amount was appropriately showing in the checkout page and order confirmation, as well as stopping duplication of the orders.
 
 ### Unfixed Bugs
 
 - There are no known unfixed bugs.
 
 ## Deployment
+
+- The database is hosted on ElephantSQL (PostgreSQL)
+  - Hit Create New Instance
+  - Choose free plan (Tiny Turtle)
+  - Select name
+  - Select region
+  - Confirm
+  - Select the newly created database, and copy the postgres URL under 'DETAILS'
+
+- Static file and image storage
+  - AWS (Amazon Web Service)
 
 - The site was deployed to Heroku:
   - Create a new Heroku app.

@@ -18,6 +18,7 @@ def wishlist(request):
     return render(request, 'wishlist/wishlist.html', context)
 
 
+@login_required
 def add_to_wishlist(request, product_id):
     """
     View for adding a product to the wishlist.
@@ -37,6 +38,7 @@ def add_to_wishlist(request, product_id):
     return redirect('product_detail', product_id=product_id)
 
 
+@login_required
 def remove_from_wishlist(request, product_id):
     """
     View for removing a product from the wishlist.

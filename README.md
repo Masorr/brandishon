@@ -394,20 +394,15 @@ autopep8 --in-place --aggressive --aggressive <file name>
 
 - Home page
   - ![Lighthouse home page](documentation/lighthouse-home.png)
-- Post detail page
-  - ![Lighthouse products page](documentation/lighthouse-products.png)
-- About page
-  - ![Lighthouse about page](documentation/lighthouse-about.png)
-- Register / Login / Logout
-  - The coder chose to group the lighthouse for these together.
-  - The one which performed worst was taken, which was sign up page.
-  - ![Lighthouse login page](documentation/lighthouse-login.png)
-- Profiles
-  - ![Lighthouse profiles list page](documentation/lighthouse-profiles-list.png)
-- Profile
-  - ![Lighthouse profile page](documentation/lighthouse-profile.png)
-- My profile
-  - ![Lighthouse my profile page](documentation/lighthouse-my-profile.png)
+- All products page (worst performance)
+  - ![Lighthouse products page](documentation/lighthouse-all-products.png)
+
+  Results of the home page, and the all products page. Improvements can be made upon performance, like sizing down the filesize of images.
+  In the all products scenario two examples can be made to greatly improve the performance: 
+    - 1: image file size reduction
+    - 2: pagination, to avoid rendering all products on the same page.
+  
+  The performance improvements will be addressed in the future for better UX.
 
 ### Fixed Bugs
 
@@ -444,6 +439,29 @@ autopep8 --in-place --aggressive --aggressive <file name>
 - There are no known unfixed bugs.
 
 ## Deployment
+
+- The database is hosted on ElephantSQL (PostgreSQL):
+  - Create an account
+  - Create new instance
+  - Continue with needed fields and a relevant name, pick free plan (Tiny Turtle)
+  - Open the instance
+  - Retreive the postgres url under 'DETAILS'
+
+- The images and static files are stored on AWS (Amazon Web Services):
+  - Create an AWS Account:
+  - Navigate to S3: From the AWS Management Console, go to the 'Services' tab and search for 'S3'. Select it.
+  - Create a Bucket: Click 'Create a new bucket', name it (preferably matching your project name), choose a region, and create the bucket.
+  - Configure Bucket Settings: Uncheck "Block all public access" and acknowledge that the bucket will be public. Enable ACLs and select "Bucket owner preferred".
+  - Configure Static Website Hosting: In the 'Properties' tab of your bucket, enable static website hosting. Set 'index.html' and 'error.html' as your index and error documents respectively.
+  - Configure CORS (Cross-Origin Resource Sharing): Under the 'Permissions' tab, add the provided CORS configuration to allow GET requests from any origin.
+  - Set Bucket Policy: In the 'Bucket Policy' section, use the Policy Generator to create a policy allowing 'GetObject' actions for all principals. Apply this policy to the bucket.
+  - Adjust Access Control List (ACL): In the 'Access Control List' section, enable 'List' permissions for Everyone (public access).
+  - Set Up IAM (Identity and Access Management): Open IAM service and create a user group. Attach the 'AmazonS3FullAccess' policy to this group, using the provided ARN.
+  - Create User and Access Credentials: Add a user to the group, granting them programmatic access. Download the CSV containing the user's access key ID and secret access key.
+
+    Integrate AWS S3 with your Django project:
+    Install the necessary packages (boto3, django-storages) using pip.
+    Set up environment variables for your AWS credentials.
 
 - The finished site was deployed to Heroku:
   - Create a new Heroku app.

@@ -9,7 +9,7 @@ Here, the users can subscribe to a newsletter. Choose quantity and sizes for pro
 It is built using the Django framework, Bootstrap, jQuery, HTML, CSS, JavaScript, and Python. The website integrates with the Stripe payment system for secure transactions, utilizes the Allauth authentication system for user management, and is deployed on Heroku. Data is stored using ElephantSQL (PostgreSQL database), and static files and images are stored on AWS.
 
 The e-commerce store is based of Code Institute's Boutique Ado, which is a full stack project built using the Django Framework.
-The wishlist, review and newsletter models are custom functionalities to expand on the sites UX.
+The wishlist, review and newsletter models are custom functionalities to expand on the site's UX.
 
 ![Responsive Mockup](documentation/media-size.jpg)
 
@@ -41,7 +41,7 @@ The wishlist, review and newsletter models are custom functionalities to expand 
 
 - **Newsletter**
 
-The newsletter is built to be easy and simple with minimum interface, yet also safe. The user can quickly subscribe to receive mails from Brandishon, without the necessity of having to register for an account.
+  The newsletter is built to be easy and simple with minimum interface, yet also safe. The user can quickly subscribe to receive mails from Brandishon, without the necessity of having to register for an account.
 
   - Shows two fields: Subscribe and Unsubscribe. For straightforward, minimum work and good user experience to quickly and easily subscribe or unsubscribe to Brandishon's newsletter.
   - Subscribe field: Includes a form where any user (logged in or not) can enter their email address if they want to subscribe to Brandishon's newsletter. When their email is entered, a verification email is sent to the user to verify that the email wants to subscribe to the newsletter. Clicking the verification link will allow the users to receive the newsletter.
@@ -50,22 +50,25 @@ The newsletter is built to be easy and simple with minimum interface, yet also s
 
 - **The Products Page**
 
-Quick overview:
+  Quick overview:
   - The products page contains all products. The products page can be categorized and filtered to show, pricing, sorts, ratings and many more options for the user to quickly access desired content.
   - It is accessible by the following:
     - Navbar: Search our site (the search bar), ALL PRODUCTS (all dropdown elements), CLOTHING (all dropdown elements), HOMEWARE (all dropdown elements), SPECIAL OFFERS (all dropdown elements)
     - Homepage: 'SHOP NOW' button.
   - Clicking on any product will take the user to the detailed page of the product
 
-More details:
+  More details:
 
-The products page is sortable and categorizable.
+  The products page is sortable and categorizable.
 
-  - Sorting: The products page can show all products or be specifically sorted.
-  - Sorting by price, rating and category is accessible in the navbar under 'ALL PRODUCTS' and choosing (By Price, By Rating, By Category, All Products). This feature is also present in a sorting function on the products page itself. In which the user can sort prices, ratings (from low to high and reverse) and name, category (from a to z and reverse)
+  - **Sorting:** The products page can show all products or be specifically sorted.
+    - Sorting by price, rating and category is accessible in the navbar under 'ALL PRODUCTS' and choosing (By Price, By Rating, By Category, All Products). This feature is also present in a sorting function on the products page itself. In which the user can sort prices, ratings (from low to high and reverse) and name, category (from a to z and reverse)
 
-  - Categorization: The products page can show categorized products, filtering results the user wants to access.
-  - Categorization is possible in the navbar under 'CLOTHING' and choosing (Activewear & Essentials, Jeans, Shirts, All Clothing), under 'HOMEWARE' and choosing (Bed & Bath, Kitchen & Dining, All Homeware), under 'SPECIAL OFFERS' and choosing (New Arrivals, Deals, Clearance, All Specials)
+  - **Categorization:** The products page can show categorized products, filtering results the user wants to access.
+    - Categorization is possible in the navbar under 'CLOTHING' and choosing (Activewear & Essentials, Jeans, Shirts, All Clothing), under 'HOMEWARE' and choosing (Bed & Bath, Kitchen & Dining, All Homeware), under 'SPECIAL OFFERS' and choosing (New Arrivals, Deals, Clearance, All Specials)
+
+  - **Admin Product Management:**
+    - Administrators have the capability to delete or edit products directly from the product detail page.
 
   - ![Products](documentation/products.png)
 
@@ -75,14 +78,16 @@ The products page is sortable and categorizable.
     - Users can easily add products to their wishlist for future reference. It will show up in 'My Wishlist' page under 'My Account' if they are logged in.
   - Admin Product Management
     - Administrators have the capability to delete or edit products directly from the product detail page.
-  - Quantity Selection and Add to Bag
-    - Users can conveniently choose the quantity of desired products and seamlessly add them to their shopping bag.
-  - Continue Shopping
+  - Quantity Selection
+    - Users can conveniently choose the quantity of desired products.
+  - Size Selection
+    - Users can select size, if it's available for the specific product.
+  - Add to Bag
+    - Users can add the specified sizes and quantities to their shopping bag.
+  - Keep Shopping
     - Allows users to continue browsing after adding products to their bag, ensuring a smooth shopping experience.
   - User Reviews
     - Logged-in users can contribute reviews for products they've purchased, enhancing the community engagement and providing valuable feedback.
-  - Guest Checkout
-    - Users have the option to make purchases without the need to create an account, streamlining the checkout process and accommodating guest users.
 
   - ![Product Detail](documentation/product-detail.png)
   - ![Review 1](documentation/review-1.png)
@@ -90,25 +95,29 @@ The products page is sortable and categorizable.
 
 - **Shopping bag**
 
-The Shopping Bag feature provides users with a seamless experience to manage their selected items before proceeding to checkout. Here's an overview of its functionalities:
+  The Shopping Bag feature provides users with a seamless experience to manage their selected items before proceeding to checkout. Below is an overview of its functionalities:
 
-  - Empty Bag Notification: If the shopping bag is empty, users are presented with a message stating "Your bag is empty" along with a "Keep Shopping" button, encouraging them to continue browsing.
+  - Empty Bag Notification
+    - If the shopping bag is empty, users are presented with a message stating "Your bag is empty" along with a "Keep Shopping" button, encouraging them to continue browsing.
+  - Adding Items
+    - Products added from the detailed product page are dynamically reflected in the shopping bag, ensuring a real-time update of selected items.
+  - Item Management
+    - Users can easily update the quantity or size of items directly within the shopping bag interface. Additionally, they have the option to remove items they no longer wish to purchase.
+  - Cost Information
+    - Each item's cost and the total cost of all items are clearly displayed, providing users with transparency regarding their shopping expenses.
+  - Checkout Navigation
+    - If there are items in the shopping bag, users are presented with a prominent "Secure Checkout" button, facilitating a smooth transition to the checkout process. Alternatively, they can choose to continue shopping.
 
-  - Adding Items: Products added from the detailed product page are dynamically reflected in the shopping bag, ensuring a real-time update of selected items.
+  This comprehensive feature set ensures that users can efficiently manage their shopping selections, review costs, and proceed to checkout securely when ready.
 
-  - Item Management: Users can easily update the quantity or size of items directly within the shopping bag interface. Additionally, they have the option to remove items they no longer wish to purchase.
-
-  - Cost Information: Each item's cost and the total cost of all items are clearly displayed, providing users with transparency regarding their shopping expenses.
-
-  - Checkout Navigation: If there are items in the shopping bag, users are presented with a prominent "Secure Checkout" button, facilitating a smooth transition to the checkout process. Alternatively, they can choose to continue shopping.
-
-This comprehensive feature set ensures that users can efficiently manage their shopping selections, review costs, and proceed to checkout securely when ready.
+  - ![Shopping Bag 1](documentation/shopping-bag-1.png)
+  - ![Shopping Bag 2](documentation/shopping-bag-2.png)
 
 - **Checkout**
 
-The Checkout section facilitates the final steps of the purchasing process, ensuring a seamless and secure transaction experience for users.
+The Checkout section facilitates the final steps of the purchasing process, ensuring a secure transaction experience for users.
 
-  - Order Information: Users proceed to the Checkout page from the Shopping Bag by clicking on the "Secure Checkout" button. Required Fields below.
+  - **Order Information:** Users proceed to the Checkout page from the Shopping Bag by clicking on the "Secure Checkout" button. Required Fields below:
     - Name
     - Email
     - Phone Number
@@ -117,15 +126,21 @@ The Checkout section facilitates the final steps of the purchasing process, ensu
     - Country (Selection Required)
     - Card Number (Processed securely through the Stripe payment system)
 
-  - Profile Integration: If users have filled in their information in the My Profile section, relevant details are automatically populated in the Checkout form. Users are presented with an option to save their delivery information to their profile for future convenience.
+  - **Profile Integration:**
+    - If users have filled in their information in the My Profile section, relevant details are automatically populated in the Checkout form. Users are presented with an option to save their delivery information to their profile for future convenience.
 
-  - Finalizing the Order: Upon completing all required fields, users have two options.
+  - **Finalizing the Order:** Upon completing all required fields, users have two options.
     - Adjust Bag: Allows users to return to the Shopping Bag to edit their order.
     - Complete Order: Initiates the transaction process.
 
-  - Transaction Confirmation: Upon initiating the transaction, a loading screen indicates the processing of the order. Once the transaction is completed, users receive a thank-you message confirming the successful transaction. They will receive a order confirmation email to the provided email address, where they can see the details. The order details are also displayed both on the webpage itself. The order information is also accessible under the "My Profile" section for logged-in users.
+  - **Transaction Confirmation:** Upon initiating the transaction, a loading screen indicates the processing of the order.
+    - Once the transaction is completed, users receive a thank-you message confirming the successful transaction. They will receive a order confirmation email to the provided email address, where they can see the details. The order details are also displayed on the webpage itself. The order information is accessible under the "My Profile" section for logged-in users.
 
-  - Return to Shopping: After completing the transaction, users are prompted with a button labeled "NOW CHECK OUT THE LATEST DEALS!". Clicking this button redirects users to the Products page, where they can explore categories such as "Clearance", "Deals", and "New Arrivals".
+  - **Return to Shopping:**
+    - After completing the transaction, users are prompted with a button labeled "NOW CHECK OUT THE LATEST DEALS!". Clicking this button redirects users to the Products page, where they can explore categories such as "Clearance", "Deals", and "New Arrivals".
+
+  - ![Checkout](documentation/checkout.png)
+  - ![Checkout Success](documentation/checkout-success.png)  
 
 - **Register, Login and Logout**
 
@@ -133,15 +148,16 @@ The Checkout section facilitates the final steps of the purchasing process, ensu
     - **Register:** Users can create an account by registering through the provided registration form.
     - **Login:** Registered users can log in using their credentials via the login form.
     - **Logout:** Allows logged-in users to sign out securely from their accounts.
-    - ![Register / Login / Logout](documentation/login.png)
+
+  - ![Register / Login / Logout](documentation/login.png)
 
 - **Product Management (Must be logged in as admin)**
 
-Overview
+  Overview
   - This feature provides administrators with the ability to manage products within the e-commerce platform. It requires users to be logged in as admin to access these functionalities.
 
   -  Add New Product
-    - Admins have the privilege to add new products to the platform by providing essential product details:
+    - Admins have the privilege to add new products to the products page by providing essential product details:
       - Category selection: Choose the appropriate category for the product.
       - SKU: Type in the Stock Keeping Unit (SKU) for the product.
       - Product Name: Enter the name of the product.
@@ -155,9 +171,12 @@ Overview
       - Add Product: Finalizes the addition of the product to the platform.
       - Cancel Action: Allows admins to discard the current action and return to the products page.
 
+  - ![Product Management Add ](documentation/product-management-add.png)
+  - ![Product Management Edit ](documentation/product-management-edit.png)
+
 - **My Profile (Must be logged in)**
 
-The My Profile section provides users with a personalized space where they can manage their account details, view their order history, and update their information.
+  The My Profile section provides users with a personalized space where they can manage their account details, view their order history, and update their information.
 
   - Profile Management: Users can access a dedicated page to save and update their personal information, ensuring a seamless shopping experience. This information includes shipping address, contact details, and preferences.
 
@@ -175,6 +194,9 @@ The My Profile section provides users with a personalized space where they can m
 
   - Removing Items from Wishlist: If a product is already present in the user's wishlist, the "Add to Wishlist" button will be replaced with a "Remove from Wishlist" option. Clicking on this button removes the item from the wishlist, allowing users to manage their selections effortlessly.
 
+  - ![Wishlist 1](documentation/wishlist-1.png)
+  - ![Wishlist 2](documentation/wishlist-2.png)
+
 ### Features Left to Implement
 
 - Addressing and finishing user story #25 (a could-have), and user story #27 (a won't-have).
@@ -189,11 +211,17 @@ The My Profile section provides users with a personalized space where they can m
 ## User Experience - UX
 
 The design and functionalities of the website is based around user stories and the agile methodology.
-Since the work is based of Boutique Ado, using it as a template. The original UX is kept to that.
+Since the work is based of Boutique Ado, using it as a template. Much of its original UX is kept.
+
+The user experience is tailored towards easy navigation and making the users feel safe during transactional actions. They are given the ability to easily save items they like to their account. They can pre-fill information to their accounts that automatically fills in during transactions, and they will be allowed to leave reviews of products they've purchased.
+
+But in order to maximise user-activity and potential customers. Users shouldn't be forced the necessity of having an account. They can quickly subscribe to Brandishon's newsletter, with a quick verification mail to receive news. They can read reviews of other customers and make transactions that feels just as safe as for registered users.
+
+At the bottom of the page. Users can visit Brandishon's facebook page, to be able to interact and become more engaged with Brandishon. They can also access Brandishon's privacy policy, yet again a notable detail that allows the users to feel professionalism and security from the company.
 
 ### User Stories
 
-The user stories are accessible in the Musician's Blog User Stories project
+The user stories are accessible in Brandishon's User Stories project
 <https://github.com/Masorr/brandishon/projects?query=is%3Aopen>
 
 - Epic: Viewing and Navigation
@@ -209,7 +237,7 @@ The user stories are accessible in the Musician's Blog User Stories project
   - #12 As a shopper I can sort multiple categories of products simultaneously so that I can find the best priced or best rated products across broad categories such as clothing or homeware
   - #14 As a shopper I can easily see what I've searched for and the number of results so that I can quickly decide whether the product I want is available
   - #13 As a shopper I can search for a product by name or description so that I can find a specific product I'd like to purchase
-  - #25 (Unfinished) As a shopper I can view the most bought products so that I can view which products are the most popular
+  - #25 (Unfinished: could-have) As a shopper I can view the most bought products so that I can view which products are the most popular
 
 - Epic: Purchasing and Checkout
   - #15 As a shopper I can select size and quantity of a product so that I don't order wrong size or quantity
@@ -222,22 +250,23 @@ The user stories are accessible in the Musician's Blog User Stories project
 - Epic: Admin and Store Management
   - #21 As a store owner I can add, edit/update, delete a product so that I can add new items to my store, change produce prices, descriptions, images and other product criteria and remove items that are no longer for sale
 
-- Epic: Registration and User Accounts
+- Epic: Wishlist, Registration and User Accounts
   - #4 As a site user I can easily register for an account so that I have a personal account and is able to view my profile
   - #6 As a site user I can easily log in and out so that I can access my personal account information
   - #7 As a site user I can recover my password so that I can recover access to my account
   - #8 As a site user I can receive an email confirmation after registering so that I can verify my account registration was successful
   - #9 As a site user I can have a personalized user profile so that I can view my personal order history, order confrimations and save my payment information
   - #24 As a site user/shopper I can add products to my wishlist so that I can keep track of my personal items and be informed of special offers
+  - #27 (Unfinished: won't-have) As a site user/shopper I can get informed by mail and site-notifications about updates on my wishlist items so that I can be informed of special offers and product updates
 
 - Epic: Reviews and Wishlist
   - #23 As a shopper I can view reviews a bought product so that I can assure the quality of the product
   - #22 As a shopper I can review a bought product so that I can assure the quality of the product to other shoppers and the owner
-  - #27 (Unfinished) As a site user/shopper I can get informed by mail and site-notifications about updates on my wishlist items so that I can be informed of special offers and product updates
 
 ### CRUD
 
 CRUD functionalities are present for:
+  - Purchasing of products
   - The site admin considering the handling of products.
   - Registered users considering reviews of specific products.
 
@@ -251,18 +280,26 @@ Attempting to access unexisting/unavailable content will present a custom 404 er
 - robots.txt and sitemap.xml are present to improve SEO.
   - sitemap.xml was generated by passing the deployed project link <https://brandishon-ab5cf39e8610.herokuapp.com/> into <https://www.xml-sitemaps.com/>
 
+- Meta description is the same website as the description for the facebook social page.
+  - 'Online retail store. Shop clothing, homeware and find special offers. Sign up for our newsletter to explore brand new deals and clearances.'
+- Meta keywords implemented for the website are its brand name and things like, 'jeans' 'homeware', 'free delivery on orders over $50'
+
 ## Marketing
 
 Marketing is done through facebook presence and a subscribable newsletter form.
 
 - **Newsletter:** The purpose of the newsletter is for users to remain in contact with Brandishon, ensuring the possibility that they'll come back and buy more products. Subscribing to the newsletter will allow the site admins on Brandishon to post new deals or relevant messages to the user. It is designed to be as minimal and simple as possible, to maximise user subscriptions. Users do not need to have an account to be able to subscribe to the newsletter, but they need to verify the email address.
+  - ![Newsletter verify](documentation/newsletter-verify.png)
 
 - **Facebook:** The purpose here is to reach out to the public and become visible for users by establishing an online presence. Here can Brandishon's facebook business page be found <https://www.facebook.com/profile.php?id=61556974037656>.
+  - ![Facebook 1](documentation/facebook-1.png)
+  - ![Facebook 2](documentation/facebook-2.png)
 
 ## Privacy Policy
 
-Since Brandishon collects data from users. The site wishes to inform the users of how the data is handled. This is done through Brandishon's privacy policy, formed according to EU's GDPR regulations. The privacy policy was generated by passing the deployed site <https://brandishon-ab5cf39e8610.herokuapp.com/> to <https://www.privacypolicygenerator.info/>
-<>
+Since Brandishon collects data from users. The site wishes to inform the users of how the data is handled. This is done through Brandishon's privacy policy, formed according to EU's GDPR regulations. The privacy policy was generated by passing the deployed site <https://brandishon-ab5cf39e8610.herokuapp.com/> to <https://www.privacypolicygenerator.info/>.
+The policy can be found below:
+<https://www.termsfeed.com/live/f617cc1c-55e7-4ef1-8a4f-02c79aa28859>
 
 ## Design
 
@@ -270,14 +307,6 @@ Since Brandishon collects data from users. The site wishes to inform the users o
 - Only wireframes available are for the new additions. Three of which are the review function for product detail page, wishlist page and the newsletter page.
 - The ERDS show the newly established models in Brandishon.
 - The new models here are: **Reviews**, **Wishlist**, **Newsletter**
-
-- **Colours**
-
-  - There are mainly 4 prevalent colour types.
-  - White (most common). Mostly used as background.
-  - Black (common). For text and buttons.
-  - Grey (uncommon). Used mostly for borders.
-  - Yellow (rare). Used only on home page.
 
 - **Wireframes**
 
@@ -291,6 +320,14 @@ Since Brandishon collects data from users. The site wishes to inform the users o
 - **ERD (Entity Relationship Diagrams)**
 
   - ![ERD](documentation/erds/erds.png)
+
+- **Colours**
+
+  - There are mainly 4 prevalent colour types.
+  - White (most common). Mostly used as background.
+  - Black (common). For text and buttons.
+  - Grey (uncommon). Used mostly for borders.
+  - Yellow (rare). Used on home page and 404 page.
 
 ## Testing
 
@@ -319,6 +356,12 @@ autopep8 --in-place --aggressive --aggressive <file name>
 
   ![W3C HTML validation](documentation/validate-html.jpg)
   ![W3C HTML validation](documentation/validate-html-example.jpg)
+
+- Boutique Ado pre-existing HTML issues
+  - There are some pre-existing HTML issues in Boutique Ado's original code. But all are passed when passing the validator by URI instead of direct input.
+  - Interestingly one error is not an error.
+  - ![W3C HTML validation error](documentation/validate-html-false-error.jpg)
+  - The code tells here of duplicate ids being used. However, the id is only used once. Suggesting the validator is giving false alert.
 
 - CSS
   - No errors or warnings were found when passing through the W3C CSS validator: <https://jigsaw.w3.org/css-validator/>
@@ -402,18 +445,7 @@ autopep8 --in-place --aggressive --aggressive <file name>
 
 ## Deployment
 
-- The database is hosted on ElephantSQL (PostgreSQL)
-  - Hit Create New Instance
-  - Choose free plan (Tiny Turtle)
-  - Select name
-  - Select region
-  - Confirm
-  - Select the newly created database, and copy the postgres URL under 'DETAILS'
-
-- Static file and image storage
-  - AWS (Amazon Web Service)
-
-- The site was deployed to Heroku:
+- The finished site was deployed to Heroku:
   - Create a new Heroku app.
   - Add config var for amazon web services: 'AWS_ACCESS_KEY_ID' and value: 'your access key'
   - Add config var for amazon web services: 'AWS_SECRET_ACCESS_KEY' and value: 'your secret key'
@@ -439,13 +471,13 @@ Link to live site - <https://brandishon-ab5cf39e8610.herokuapp.com/>
   - Open the terminal in your code editor and specify the directory you want to have your clone.
   - Type 'git clone' into your terminal and paste the link <https://github.com/Masorr/musicians_blog.git> and hit enter.
 
-## Disclaimer
-
 ## Credits
 
 ### Content
 
 - The base of the e-commerce Django project comes from Code Institute's Boutique Ado walkthrough project. This is most of the functionality of the website. Including home page, products page, detailed products page, shopping bag, checkout function. Login functionality and registering of users and the stripe payment handling.
+- Generating legitimate verification emails, to prevent unauthorized users from verifying others mails. Came from https://docs.python.org/3/library/uuid.html#uuid.uuid4
+- Inspiration for generating the path to the 'subscribe/unsubscribe' function to the emailed user, came from https://stackoverflow.com/questions/25824598/django-allauth-not-sending-links-with-https and https://docs.djangoproject.com/en/5.0/ref/request-response/#django.http.HttpRequest.build_absolute_uri 
 
 ### Media
 
@@ -453,5 +485,5 @@ Link to live site - <https://brandishon-ab5cf39e8610.herokuapp.com/>
 
 ## Thanks
 
-- I want to thank Code Institute and their tutors for their program and lessons, and giving me the opportunity to learn by myself by coding this full stack blog website using the django framework.
+- I want to thank Code Institute and their tutors for their program and lessons, and giving me the opportunity to learn by myself by coding this full stack e-commerce website using the django framework.
 - I want to thank the Slack community and my mentor Dick Vlaanderen for feedback and inputs.
